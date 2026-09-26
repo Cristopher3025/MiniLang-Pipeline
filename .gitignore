@@ -1,0 +1,22 @@
+# Java build output
+java/out/
+java/build/
+*.class
+
+# Python cache and environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Generated pipeline artifacts
+data/output/*
+!data/output/.gitkeep
+
+# IDE files
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
