@@ -1,39 +1,85 @@
-# MiniLang Pipeline
+# 🚀 Project & Pipeline Documentation
 
-A three-stage programming paradigms project for the EIF400 practical challenge.
+Welcome to the central repository for project documentation. This document serves as the primary entry point to understand the architectural design, technical decisions, pipeline contracts, and test verification procedures.
 
-## Pipeline
+---
+
+## 📌 Table of Contents
+
+- [Overview](#-overview)
+- [Repository Structure](#-repository-structure)
+- [Core Documentation](#-core-documentation)
+  - [Pipeline Contract](#1-pipeline-contract)
+  - [Technical Decisions](#2-technical-decisions)
+  - [Test Evidence](#3-test-evidence)
+- [Getting Started](#-getting-started)
+- [Contributing](#-contributing)
+
+---
+
+## 🔍 Overview
+
+This project provides a robust, scalable pipeline designed for reliable data processing, continuous integration, and high traceability across all lifecycle stages. The documentation stored in this repository outlines formal interface contracts, design justifications, and test execution results.
+
+---
+
+## 📂 Repository Structure
+
+Below is the layout of the documentation directory:
 
 ```text
-programa.mini -> Java lexer/parser/OOP -> programa.ir
-programa.ir   -> Python functional executor -> resultado.txt
-resultado.txt -> MIPS checksum stage -> firma.txt
+.
+├── README.md                  # Main entry point and system overview
+└── docs/
+    ├── pipeline-contract.md   # Specifications, schemas, and contract rules
+    ├── technical-decisions.md # Architecture Decision Records (ADRs)
+    └── test-evidence.md      # Test execution reports, logs, and evidence
 ```
 
-## Repository Structure
+---
 
-- `java/`: Java lexer, parser, instruction hierarchy, validation, and IR generation.
-- `python/`: Python functional executor for `FILTER`, `MAP`, and `REDUCE`.
-- `mips/`: MIPS checksum and verification stage.
-- `examples/`: Valid and invalid MiniLang programs used for demonstrations.
-- `tests/`: Cross-stage test cases and expected behavior.
-- `docs/`: Pipeline contract, design decisions, and test evidence.
-- `scripts/`: Commands that run the complete pipeline.
-- `data/`: Runtime input and generated artifacts.
+## 📋 Core Documentation
 
-## Planned Execution
+### 1. 📄 [`docs/pipeline-contract.md`](docs/pipeline-contract.md)
+Defines the strict rules for input, processing, and output formats required by all components operating in the pipeline:
+* **Payload Formats:** Expected data structures (JSON / YAML).
+* **Schema Validation:** Mandatory fields, data typing, and constraints.
+* **Error Handling:** Standardized status codes, retry strategies, and Dead Letter Queues (DLQ).
 
-The complete pipeline will be documented here once the three stages are implemented.
+### 2. 📄 [`docs/technical-decisions.md`](docs/technical-decisions.md)
+Contains the Architecture Decision Records (ADRs) explaining the design and infrastructure choices:
+* **Architecture Strategy:** Justifications for the technology stack.
+* **Trade-Offs Analysis:** Evaluations of considered alternatives vs. implemented solutions.
+* **Scalability & Security:** Measures implemented for performance optimization and data safety.
 
-## Team Workflow
+### 3. 📄 [`docs/test-evidence.md`](docs/test-evidence.md)
+Provides proof of verification and system compliance:
+* **Unit & Integration Testing:** Code coverage metrics and execution summaries.
+* **Performance & Load Tests:** Response times, throughput, and latency reports.
+* **Execution Logs:** Snippets and visual verification from testing environments.
 
-1. Keep each stage independent and communicate only through the documented files.
-2. Add or update tests with every parser or execution feature.
-3. Do not manually edit generated files under `data/output/`.
-4. Document any language extension in `docs/` before implementing it.
-5. Use feature branches and review changes before merging into `main`.
+---
 
-## Requirements
+## 🛠️ Getting Started
 
-The project will require a JDK, Python, and a MIPS simulator such as MARS or QtSPIM.
-Exact versions and commands will be added after the implementation setup is agreed upon.
+To explore or work with the documentation locally:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-org/your-repo-name.git
+   cd your-repo-name
+   ```
+
+2. **Navigate the docs:**
+   Browse the `docs/` folder or click directly on the links provided in the section above.
+
+---
+
+## 🤝 Contributing
+
+1. Review `docs/technical-decisions.md` before suggesting major architectural changes.
+2. Submit a Pull Request referencing the updated contract or decision record.
+
+---
+
+*Maintained by the Engineering & Architecture Team.*
