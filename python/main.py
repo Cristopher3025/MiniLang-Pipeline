@@ -1,7 +1,6 @@
 from pathlib import Path
 import sys
 
-# Agregamos /src para poder importar nuestro paquete minilang.
 CURRENT_DIR = Path(__file__).resolve().parent
 SRC_DIR = CURRENT_DIR / "src"
 
@@ -16,7 +15,6 @@ def main():
     print("=== MiniLang - Etapa Python ===")
     print()
 
-    # python/ está dentro de la raíz MiniLang-Pipeline.
     project_root = CURRENT_DIR.parent
 
     input_path = (
@@ -35,19 +33,16 @@ def main():
 
     try:
 
-        # 1. Leer programa.ir
         print("[1/3] Leyendo programa.ir...")
 
         instructions = read_ir(input_path)
 
-        # 2. Ejecutar las transformaciones
         print("[2/3] Ejecutando transformaciones...")
 
         trace, result, operations = execute(
             instructions
         )
 
-        # 3. Generar resultado.txt
         print("[3/3] Generando resultado.txt...")
 
         output_path.parent.mkdir(
@@ -104,8 +99,7 @@ def main():
             file=sys.stderr
         )
 
-        # Evitamos conservar un resultado viejo
-        # si la ejecución actual falla.
+        # Prevent a failed run from leaving a stale result file.
         try:
             output_path.unlink(
                 missing_ok=True

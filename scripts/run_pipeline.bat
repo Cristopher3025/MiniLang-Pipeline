@@ -1,13 +1,7 @@
 @echo off
 setlocal
 
-REM ============================================================
-REM MiniLang Pipeline
-REM Java -> Python -> MIPS
-REM ============================================================
-
-REM Nos movemos a la raiz del proyecto sin importar
-REM desde donde se haya ejecutado este .bat.
+REM Set the working directory to the project root, regardless of where this script was launched.
 cd /d "%~dp0.."
 
 echo.
@@ -15,10 +9,6 @@ echo ============================================================
 echo               MINILANG PIPELINE
 echo ============================================================
 echo.
-
-REM ============================================================
-REM 1. JAVA
-REM ============================================================
 
 echo [1/3] Ejecutando etapa Java...
 echo.
@@ -37,7 +27,6 @@ if errorlevel 1 (
 
 cd ..
 
-REM Verificamos que Java realmente haya producido programa.ir.
 if not exist "data\output\programa.ir" (
     echo.
     echo ERROR: Java no genero programa.ir.
@@ -49,10 +38,6 @@ echo.
 echo Etapa Java completada.
 echo ------------------------------------------------------------
 echo.
-
-REM ============================================================
-REM 2. PYTHON
-REM ============================================================
 
 echo [2/3] Ejecutando etapa Python...
 echo.
@@ -66,7 +51,6 @@ if errorlevel 1 (
     exit /b 1
 )
 
-REM Verificamos que Python haya producido resultado.txt.
 if not exist "data\output\resultado.txt" (
     echo.
     echo ERROR: Python no genero resultado.txt.
@@ -78,10 +62,6 @@ echo.
 echo Etapa Python completada.
 echo ------------------------------------------------------------
 echo.
-
-REM ============================================================
-REM 3. MIPS / MARS
-REM ============================================================
 
 echo [3/3] Ejecutando etapa MIPS con MARS 4.5...
 echo.
@@ -101,7 +81,6 @@ if errorlevel 1 (
     exit /b 1
 )
 
-REM Verificamos que MIPS haya producido firma.txt.
 if not exist "data\output\firma.txt" (
     echo.
     echo ERROR: MIPS no genero firma.txt.
@@ -113,10 +92,6 @@ echo.
 echo Etapa MIPS completada.
 echo ------------------------------------------------------------
 echo.
-
-REM ============================================================
-REM PIPELINE COMPLETADO
-REM ============================================================
 
 echo ============================================================
 echo           PIPELINE COMPLETADO CORRECTAMENTE

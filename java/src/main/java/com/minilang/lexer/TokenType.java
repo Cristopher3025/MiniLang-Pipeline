@@ -2,34 +2,34 @@ package com.minilang.lexer;
 
 public enum TokenType {
 
-    // Palabras reservadas
+    // Reserved words
     DATA,
     FILTER,
     MAP,
     REDUCE,
     PRINT,
 
-    // Operaciones de REDUCE
+    // REDUCE operations
     SUM,
     MAX,
     MIN,
 
-    // Comparadores
-    GREATER,          // >
-    LESS,             // <
-    GREATER_EQUAL,    // >=
-    LESS_EQUAL,       // <=
-    EQUAL,            // ==
+    // Comparison operators
+    GREATER,
+    LESS,
+    GREATER_EQUAL,
+    LESS_EQUAL,
+    EQUAL,
 
-    // Operadores aritméticos
-    PLUS,             // +
-    MINUS,            // -
-    MULTIPLY,         // *
+    // Arithmetic operators
+    PLUS,
+    MINUS,
+    MULTIPLY,
 
-    // Valores
+    // Values
     NUMBER,
 
-    // Control
+    // Control tokens
     NEWLINE,
     EOF
 }

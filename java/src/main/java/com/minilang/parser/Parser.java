@@ -8,7 +8,6 @@ import com.minilang.model.Instruccion;
 import com.minilang.model.MapInstr;
 import com.minilang.model.PrintInstr;
 import com.minilang.model.ReduceInstr;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +27,6 @@ public class Parser {
 
         skipNewLines();
 
-        // El programa obligatoriamente debe iniciar con DATA
         if (!check(TokenType.DATA)) {
             Token token = peek();
 
@@ -43,7 +41,6 @@ public class Parser {
 
         skipNewLines();
 
-        // Debe existir al menos una operación
         if (!isOperation(peek().getType())) {
             Token token = peek();
 
@@ -53,7 +50,6 @@ public class Parser {
             );
         }
 
-        // Procesamos todas las operaciones
         while (isOperation(peek().getType())) {
 
             instrucciones.add(parseOperation());
@@ -61,7 +57,6 @@ public class Parser {
             skipNewLines();
         }
 
-        // Después de las operaciones debe venir PRINT
         if (!check(TokenType.PRINT)) {
             Token token = peek();
 
@@ -78,7 +73,6 @@ public class Parser {
 
         skipNewLines();
 
-        // No debe existir nada después de PRINT
         if (!check(TokenType.EOF)) {
             Token token = peek();
 

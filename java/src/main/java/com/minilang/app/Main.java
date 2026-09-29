@@ -7,7 +7,6 @@ import com.minilang.lexer.Token;
 import com.minilang.model.Instruccion;
 import com.minilang.parser.Parser;
 import com.minilang.parser.ParserException;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,13 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        /*
-         * Ejecutamos Java desde la carpeta /java.
-         *
-         * Por eso ".." nos devuelve a la raiz:
-         *
-         * MiniLang-Pipeline/
-         */
+                // Java runs from the java directory, so ".." resolves to the project root.
         Path inputPath = Path.of(
                 "..",
                 "data",
@@ -43,10 +36,6 @@ public class Main {
             System.out.println("=== MiniLang - Etapa Java ===");
             System.out.println();
 
-            // =================================================
-            // 1. LEER programa.mini
-            // =================================================
-
             System.out.println(
                     "[1/4] Leyendo programa.mini..."
             );
@@ -54,10 +43,6 @@ public class Main {
             String source = Files.readString(
                     inputPath
             );
-
-            // =================================================
-            // 2. ANALISIS LEXICO
-            // =================================================
 
             System.out.println(
                     "[2/4] Ejecutando analisis lexico..."
@@ -68,10 +53,6 @@ public class Main {
             List<Token> tokens =
                     lexer.tokenize();
 
-            // =================================================
-            // 3. ANALISIS SINTACTICO
-            // =================================================
-
             System.out.println(
                     "[3/4] Ejecutando analisis sintactico..."
             );
@@ -81,10 +62,6 @@ public class Main {
 
             List<Instruccion> instrucciones =
                     parser.parse();
-
-            // =================================================
-            // 4. GENERACION DEL IR
-            // =================================================
 
             System.out.println(
                     "[4/4] Generando programa.ir..."
@@ -97,10 +74,6 @@ public class Main {
                     instrucciones,
                     outputPath
             );
-
-            // =================================================
-            // EJECUCION CORRECTA
-            // =================================================
 
             System.out.println();
 
@@ -120,10 +93,6 @@ public class Main {
 
         } catch (LexerException | ParserException e) {
 
-            // =================================================
-            // ERROR LEXICO O SINTACTICO
-            // =================================================
-
             System.err.println();
 
             System.err.println(
@@ -134,12 +103,7 @@ public class Main {
                     e.getMessage()
             );
 
-            /*
-             * Eliminamos un programa.ir anterior.
-             *
-             * Esto evita que Python utilice accidentalmente
-             * un IR viejo cuando la ejecucion actual fallo.
-             */
+            // Prevent downstream stages from consuming stale IR after a failed run.
             try {
 
                 Files.deleteIfExists(
@@ -149,19 +113,9 @@ public class Main {
             } catch (IOException ignored) {
             }
 
-            /*
-             * Indicamos al sistema operativo que Java fallo.
-             *
-             * Esto permite que run_pipeline.bat detecte
-             * el error y detenga todo el pipeline.
-             */
             System.exit(1);
 
         } catch (IOException e) {
-
-            // =================================================
-            // ERROR DE ARCHIVOS
-            // =================================================
 
             System.err.println();
 
@@ -173,10 +127,7 @@ public class Main {
                     e.getMessage()
             );
 
-            /*
-             * Tambien eliminamos cualquier IR anterior
-             * para evitar resultados inconsistentes.
-             */
+            // Prevent downstream stages from consuming stale IR after a failed run.
             try {
 
                 Files.deleteIfExists(

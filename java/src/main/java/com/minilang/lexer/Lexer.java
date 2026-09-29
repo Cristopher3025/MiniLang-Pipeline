@@ -26,13 +26,11 @@ public class Lexer {
 
             switch (c) {
 
-                // Espacios que ignoramos
                 case ' ':
                 case '\t':
                 case '\r':
                     break;
 
-                // Cambio de línea
                 case '\n':
                     tokens.add(new Token(
                             TokenType.NEWLINE,
@@ -42,7 +40,6 @@ public class Lexer {
                     line++;
                     break;
 
-                // Operadores simples
                 case '+':
                     addToken(TokenType.PLUS, "+");
                     break;
@@ -55,7 +52,6 @@ public class Lexer {
                     addToken(TokenType.MULTIPLY, "*");
                     break;
 
-                // >
                 case '>':
                     if (match('=')) {
                         addToken(TokenType.GREATER_EQUAL, ">=");
@@ -64,7 +60,6 @@ public class Lexer {
                     }
                     break;
 
-                // <
                 case '<':
                     if (match('=')) {
                         addToken(TokenType.LESS_EQUAL, "<=");
@@ -73,7 +68,6 @@ public class Lexer {
                     }
                     break;
 
-                // ==
                 case '=':
                     if (match('=')) {
                         addToken(TokenType.EQUAL, "==");
