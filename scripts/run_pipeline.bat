@@ -9,10 +9,34 @@ echo                 MINILANG PIPELINE
 echo ============================================================
 echo.
 
-echo [1/3] Ejecutando etapa Java...
+echo [1/4] Compilando etapa Java...
 echo.
 
 cd java
+
+if not exist "out" mkdir out
+
+javac -d out src\main\java\com\minilang\lexer\*.java src\main\java\com\minilang\model\*.java src\main\java\com\minilang\parser\*.java src\main\java\com\minilang\ir\*.java src\main\java\com\minilang\app\*.java
+
+if errorlevel 1 (
+    echo.
+    echo ============================================================
+    echo ERROR: La compilacion de Java fallo.
+    echo Pipeline detenido.
+    echo ============================================================
+    echo.
+    cd ..
+    pause
+    exit /b 1
+)
+
+echo.
+echo Compilacion Java completada.
+echo ------------------------------------------------------------
+echo.
+
+echo [2/4] Ejecutando etapa Java...
+echo.
 
 java -cp out com.minilang.app.Main
 
@@ -46,7 +70,7 @@ echo Etapa Java completada.
 echo ------------------------------------------------------------
 echo.
 
-echo [2/3] Ejecutando etapa Python...
+echo [3/4] Ejecutando etapa Python...
 echo.
 
 python python\main.py
@@ -78,7 +102,7 @@ echo Etapa Python completada.
 echo ------------------------------------------------------------
 echo.
 
-echo [3/3] Ejecutando etapa MIPS con MARS 4.5...
+echo [4/4] Ejecutando etapa MIPS con MARS 4.5...
 echo.
 
 if not exist "Mars4_5.jar" (
