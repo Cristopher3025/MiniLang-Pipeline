@@ -2,6 +2,7 @@
 java/out/
 java/build/
 *.class
+data/output/*
 
 # Python cache and environments
 __pycache__/
